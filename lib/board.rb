@@ -14,9 +14,8 @@ class Board
       'g' => '.,.,.,.,.,.'
     }
     field.each do |key, value|
-      make_string = "#{key}#{value}"
-      make_string.split(",")
-      print make_string
+      make_string = "#{value}".gsub(',', ' ')
+      puts make_string
     end
   end
 
@@ -33,7 +32,7 @@ class Board
 end
 
 board = Board.new
-p board.board
+board.board
 
 # p board.drawBoard
 # board = Board.new
