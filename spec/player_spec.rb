@@ -6,6 +6,12 @@ describe Player do
     player1 = Player.new('Saba', 'X')
     expect(player1).to be_a(Player)
   end
-  it 'text' do
+  it 'has a name' do
+    player1 = Player.new('Saba', 'X')
+    expect(player1.name).to eq('Saba')
+  end
+  it 'has a token' do
+    player1 = Player.new('Saba', 'X')
+    expect(player1.token).to eq('X')
   end
 end
