@@ -24,4 +24,8 @@ describe Game do
                                      'f' => '.,.,.,.,.,.',
                                      'g' => '.,.,.,.,.,.' })
   end
+  it 'starts' do
+    game = Game.new
+    expect(game).to respond_to(:start)
+  end
 end
