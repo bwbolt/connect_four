@@ -6,4 +6,6 @@ class Game
     @computer_player = Player.new('Computer', 'O')
     @board = Board.new
   end
+
+  def start; end
 end
