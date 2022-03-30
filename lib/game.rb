@@ -11,9 +11,15 @@ class Game
   end
 
   def start
+    @board_order = [5, 4, 3, 2, 1, 0] # This is for printing the board in the correct order
+    puts 'ABCDEFG'
+    @board_order.each do |i|
+      puts "#{board['a'].split(',')[i]}#{board['b'].split(',')[i]}#{board['c'].split(',')[i]}#{board['d'].split(',')[i]}#{board['e'].split(',')[i]}#{board['f'].split(',')[i]}#{board['g'].split(',')[i]}"
+    end
+
     while true
 
-      input = gets.chomp.downcase
+      input = gets.chomp.downcase     # This is for getting user input from user
 
       @board[input].sub!('.', 'X')
 
@@ -39,7 +45,7 @@ class Game
       @board[random[0]].sub!('.', 'O')
 
       puts 'ABCDEFG'
-      a.each do |i|
+      @board_order.each do |i|
         puts "#{@board['a'].split(',')[i]}#{@board['b'].split(',')[i]}#{@board['c'].split(',')[i]}#{@board['d'].split(',')[i]}#{@board['e'].split(',')[i]}#{@board['f'].split(',')[i]}#{@board['g'].split(',')[i]}"
       end
 
