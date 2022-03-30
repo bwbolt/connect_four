@@ -11,11 +11,7 @@ class Game
   end
 
   def start
-    @board_order = [5, 4, 3, 2, 1, 0] # This is for printing the board in the correct order
-    puts 'ABCDEFG'
-    @board_order.each do |i|
-      puts "#{board['a'].split(',')[i]}#{board['b'].split(',')[i]}#{board['c'].split(',')[i]}#{board['d'].split(',')[i]}#{board['e'].split(',')[i]}#{board['f'].split(',')[i]}#{board['g'].split(',')[i]}"
-    end
+    @board.print_board
 
     while true
 
@@ -23,10 +19,7 @@ class Game
 
       @board[input].sub!('.', 'X')
 
-      puts 'ABCDEFG'
-      a.each do |i|
-        puts "#{@board['a'].split(',')[i]}#{@board['b'].split(',')[i]}#{@board['c'].split(',')[i]}#{@board['d'].split(',')[i]}#{@board['e'].split(',')[i]}#{@board['f'].split(',')[i]}#{@board['g'].split(',')[i]}"
-      end
+      @board.print_board
 
       if @board.any? { |_key, value| value.include?('X,X,X,X') }
         p "#{@player1.name} is the Winner!!!"
@@ -44,10 +37,7 @@ class Game
 
       @board[random[0]].sub!('.', 'O')
 
-      puts 'ABCDEFG'
-      @board_order.each do |i|
-        puts "#{@board['a'].split(',')[i]}#{@board['b'].split(',')[i]}#{@board['c'].split(',')[i]}#{@board['d'].split(',')[i]}#{@board['e'].split(',')[i]}#{@board['f'].split(',')[i]}#{@board['g'].split(',')[i]}"
-      end
+      @board.print_board
 
       next unless @board.any? { |_key, value| value.include?('O,O,O,O') }
 
