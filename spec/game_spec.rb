@@ -28,4 +28,8 @@ describe Game do
     game = Game.new
     expect(game).to respond_to(:start)
   end
+  it 'can produce main menu' do
+    game = Game.new
+    expect(game).to respond_to(:print_main_menu)
+  end
 end

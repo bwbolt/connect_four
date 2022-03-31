@@ -3,11 +3,11 @@ require './lib/board'
 require './lib/turn'
 
 class Game
-  attr_reader :player1, :computer_player, :board
+  attr_reader :player1, :player2, :board
 
   def initialize
     @player1 = Player.new('Player One', 'X')
-    @computer_player = Player.new('Computer', 'O')
+    @player2 = Player.new('Computer', 'O')
     @board = Board.new
     @winners = ["#{@board.board['a'][4]},#{@board.board['b'][6]},#{@board.board['c'][8]},#{@board.board['d'][10]}",
                 "#{@board.board['a'][2]},#{@board.board['b'][4]},#{@board.board['c'][6]},#{@board.board['d'][8]},#{@board.board['e'][10]}",
@@ -46,7 +46,9 @@ class Game
 
       if winner?('X')
         p 'Player One is the Winner!!!'
-        break
+
+        print_main_menu
+
       end
 
       # print 'Computer calculating'
@@ -59,13 +61,17 @@ class Game
 
       @board.print_board
       recycle_winners
-      if winner?('O')
-        p 'The almighty computer has won...'
-        break
-      end
+
+      next unless winner?('O')
+
+      p 'The almighty computer has won...'
+      # break
+      print_main_menu
+
 
     end
     p "It's a DRAW!!" if @board.draw
+    print_main_menu
   end
 
   def recycle_winners
@@ -94,5 +100,17 @@ class Game
 
   def winner?(sym)
     @winners.any? { |e| e.include?("#{sym},#{sym},#{sym},#{sym}") }
+  end
+
+  def print_main_menu
+    p 'Enter p to play. Enter q to quit.'
+    user_input = nil
+    user_input = gets.chomp until %w[p q].include?(user_input)
+    if user_input == 'p'
+      game = Game.new
+      game.start
+    elsif user_input == 'q'
+      p 'Hope to see you again soon! Goodbye!'
+    end
   end
 end
