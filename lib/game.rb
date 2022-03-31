@@ -1,5 +1,6 @@
 require './lib/player'
 require './lib/board'
+require './lib/turn'
 
 class Game
   attr_reader :player1, :computer_player, :board
@@ -29,24 +30,22 @@ class Game
                 "#{@board.board['a'][6]},#{@board.board['b'][6]},#{@board.board['c'][6]},#{@board.board['d'][6]},#{@board.board['e'][6]},#{@board.board['f'][6]},#{@board.board['g'][6]}", # These are the horizontals
                 "#{@board.board['a'][8]},#{@board.board['b'][8]},#{@board.board['c'][8]},#{@board.board['d'][8]},#{@board.board['e'][8]},#{@board.board['f'][8]},#{@board.board['g'][8]}",
                 "#{@board.board['a'][10]},#{@board.board['b'][10]},#{@board.board['c'][10]},#{@board.board['d'][10]},#{@board.board['e'][10]},#{@board.board['f'][10]},#{@board.board['g'][10]}"]
-
   end
 
   def start
     @board.print_board
 
     until @board.draw
+      turn = Turn.new(@board)
       recycle_winners
-      input = gets.chomp.downcase # This is for getting user input from user
-
-      @board.board[input].sub!('.', 'X')
+      turn.human_turn
 
       @board.print_board
 
       recycle_winners
+
       if winner?('X')
         p 'Player One is the Winner!!!'
-
         break
       end
 
@@ -56,14 +55,10 @@ class Game
       # sleep(1)
       # puts '.'
 
-      options = %w[a b c d e f g]
-      random = options.shuffle
-
-      @board.board[random[0]].sub!('.', 'O')
+      turn.computer_turn
 
       @board.print_board
       recycle_winners
-
       if winner?('O')
         p 'The almighty computer has won...'
         break
