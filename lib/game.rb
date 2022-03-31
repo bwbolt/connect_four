@@ -1,5 +1,6 @@
 require './lib/player'
 require './lib/board'
+require './lib/turn'
 
 class Game
   attr_reader :player1, :player2, :board
@@ -35,18 +36,19 @@ class Game
     @board.print_board
 
     until @board.draw
+      turn = Turn.new(@board)
       recycle_winners
-      input = gets.chomp.downcase # This is for getting user input from user
-
-      @board.board[input].sub!('.', 'X')
+      turn.human_turn
 
       @board.print_board
 
       recycle_winners
+
       if winner?('X')
         p 'Player One is the Winner!!!'
+
         print_main_menu
-        # break
+
       end
 
       # print 'Computer calculating'
@@ -55,10 +57,7 @@ class Game
       # sleep(1)
       # puts '.'
 
-      options = %w[a b c d e f g]
-      random = options.shuffle
-
-      @board.board[random[0]].sub!('.', 'O')
+      turn.computer_turn
 
       @board.print_board
       recycle_winners
@@ -68,6 +67,7 @@ class Game
       p 'The almighty computer has won...'
       # break
       print_main_menu
+
 
     end
     p "It's a DRAW!!" if @board.draw
