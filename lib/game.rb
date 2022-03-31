@@ -29,6 +29,7 @@ class Game
                 "#{@board.board['a'][6]},#{@board.board['b'][6]},#{@board.board['c'][6]},#{@board.board['d'][6]},#{@board.board['e'][6]},#{@board.board['f'][6]},#{@board.board['g'][6]}", # These are the horizontals
                 "#{@board.board['a'][8]},#{@board.board['b'][8]},#{@board.board['c'][8]},#{@board.board['d'][8]},#{@board.board['e'][8]},#{@board.board['f'][8]},#{@board.board['g'][8]}",
                 "#{@board.board['a'][10]},#{@board.board['b'][10]},#{@board.board['c'][10]},#{@board.board['d'][10]},#{@board.board['e'][10]},#{@board.board['f'][10]},#{@board.board['g'][10]}"]
+
   end
 
   def start
@@ -41,9 +42,11 @@ class Game
       @board.board[input].sub!('.', 'X')
 
       @board.print_board
+
       recycle_winners
       if winner?('X')
         p 'Player One is the Winner!!!'
+
         break
       end
 
