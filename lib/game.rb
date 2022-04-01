@@ -38,7 +38,7 @@ class Game
     until @board.draw
       turn = Turn.new(@board)
       recycle_winners
-      turn.human_turn
+      turn.human_turn('X')
 
       @board.print_board
 
@@ -73,6 +73,70 @@ class Game
     print_main_menu
   end
 
+  def start_two_player
+    # require 'pry'
+    # binding.pry
+    p "Please enter player1's name"
+    print '>'
+    @player1.change_name(gets.chomp)
+    p "Please enter player2's name"
+    print '>'
+    @player2.change_name(gets.chomp)
+
+    @board.print_board
+
+    until @board.draw
+      turn = Turn.new(@board)
+      recycle_winners
+      turn.human_turn('X')
+
+      @board.print_board
+
+      recycle_winners
+
+      if winner?('X')
+        p "#{@player1.name} is the Winner!!!"
+
+        print_main_menu
+        exit
+      end
+
+      # print 'Computer calculating'
+      # sleep(1)
+      # print '.' # This bit here makes it look like the computer is thinking.
+      # sleep(1)
+      # puts '.'
+
+      #   turn.computer_turn
+      #
+      #   @board.print_board
+      #   recycle_winners
+      #
+      #   next unless winner?('O')
+      #
+      #   p 'The almighty computer has won...'
+      #   # break
+      #   print_main_menu
+      #   exit
+      # end
+      turn.human_turn('O')
+
+      @board.print_board
+
+      recycle_winners
+
+      next unless winner?('O')
+
+      p "#{@player2.name} is the Winner!!!"
+
+      print_main_menu
+      exit
+    end
+
+    p "It's a DRAW!!" if @board.draw
+    print_main_menu
+  end
+
   def recycle_winners
     @winners = ["#{@board.board['a'][4]},#{@board.board['b'][6]},#{@board.board['c'][8]},#{@board.board['d'][10]}",
                 "#{@board.board['a'][2]},#{@board.board['b'][4]},#{@board.board['c'][6]},#{@board.board['d'][8]},#{@board.board['e'][10]}",
@@ -102,12 +166,12 @@ class Game
   end
 
   def print_main_menu
-    p 'Enter p to play. Enter q to quit.'
+    p 'Enter p to play. Enter t to play two player. Enter q to quit.'
     print '>'
     user_input = gets.chomp.downcase
 
-    until %w[p q].include?(user_input)
-      p 'Please enter valid response. p or q.'
+    until %w[p t q].include?(user_input)
+      p 'Please enter valid response. p or t or q.'
       print '>'
       user_input = gets.chomp.downcase
     end
@@ -115,6 +179,9 @@ class Game
     if user_input == 'p'
       game = Game.new
       game.start
+    elsif user_input == 't'
+      game = Game.new
+      game.start_two_player
     elsif user_input == 'q'
       p 'Hope to see you again soon! Goodbye!'
     end
