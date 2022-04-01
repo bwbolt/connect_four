@@ -103,10 +103,12 @@ class Game
 
   def print_main_menu
     p 'Enter p to play. Enter q to quit.'
+    print '>'
     user_input = gets.chomp.downcase
 
     until %w[p q].include?(user_input)
       p 'Please enter valid response. p or q.'
+      print '>'
       user_input = gets.chomp.downcase
     end
 
