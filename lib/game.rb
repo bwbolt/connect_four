@@ -38,13 +38,13 @@ class Game
     until @board.draw
       turn = Turn.new(@board)
       recycle_winners
-      turn.human_turn('X')
+      turn.human_turn(@player1)
 
       @board.print_board
 
       recycle_winners
 
-      if winner?(@player1)
+      if winner?('X')
         p 'Player One is the Winner!!!'
 
         print_main_menu
