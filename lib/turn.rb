@@ -1,14 +1,16 @@
 class Turn
-attr_reader :board
+  attr_reader :board
 
   def initialize(board)
     @board = board
   end
-# require 'pry' ; binding.pry
+
+  # require 'pry' ; binding.pry
   def human_turn
+    p 'Please enter position to place token'
     input = gets.chomp.downcase
     until   %w[a b c d e f g].include?(input) && @board.board[input][-1] == '.'
-      puts 'Please enter a Valid Space'
+      p 'Please enter a valid position'
       input = gets.chomp.downcase
     end
 
