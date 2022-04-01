@@ -48,7 +48,7 @@ class Game
         p 'Player One is the Winner!!!'
 
         print_main_menu
-
+        exit
       end
 
       # print 'Computer calculating'
@@ -67,8 +67,7 @@ class Game
       p 'The almighty computer has won...'
       # break
       print_main_menu
-
-
+      exit
     end
     p "It's a DRAW!!" if @board.draw
     print_main_menu
@@ -104,8 +103,15 @@ class Game
 
   def print_main_menu
     p 'Enter p to play. Enter q to quit.'
-    user_input = nil
-    user_input = gets.chomp until %w[p q].include?(user_input)
+    print '>'
+    user_input = gets.chomp.downcase
+
+    until %w[p q].include?(user_input)
+      p 'Please enter valid response. p or q.'
+      print '>'
+      user_input = gets.chomp.downcase
+    end
+
     if user_input == 'p'
       game = Game.new
       game.start
