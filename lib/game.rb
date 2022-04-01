@@ -48,7 +48,7 @@ class Game
         p 'Player One is the Winner!!!'
 
         print_main_menu
-
+        exit
       end
 
       # print 'Computer calculating'
@@ -67,8 +67,7 @@ class Game
       p 'The almighty computer has won...'
       # break
       print_main_menu
-
-
+      exit
     end
     p "It's a DRAW!!" if @board.draw
     print_main_menu
