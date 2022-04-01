@@ -51,11 +51,11 @@ class Game
         exit
       end
 
-      # print 'Computer calculating'
-      # sleep(1)
-      # print '.' # This bit here makes it look like the computer is thinking.
-      # sleep(1)
-      # puts '.'
+      print 'Computer calculating'
+      sleep(1)
+      print '.' # This bit here makes it look like the computer is thinking.
+      sleep(1)
+      puts '.'
 
       turn.computer_turn
 
