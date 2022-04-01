@@ -8,9 +8,11 @@ class Turn
   # require 'pry' ; binding.pry
   def human_turn
     p 'Please enter position to place token'
+    print '>'
     input = gets.chomp.downcase
     until   %w[a b c d e f g].include?(input) && @board.board[input][-1] == '.'
       p 'Please enter a valid position'
+      print '>'
       input = gets.chomp.downcase
     end
 
