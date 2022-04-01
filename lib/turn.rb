@@ -6,17 +6,17 @@ class Turn
   end
 
   # require 'pry' ; binding.pry
-  def human_turn(sym)
-    p 'Please enter position to place token'
+  def human_turn(player)
+    p "#{player.name} please enter position to place an #{player.token}"
     print '>'
     input = gets.chomp.downcase
     until   %w[a b c d e f g].include?(input) && @board.board[input][-1] == '.'
-      p 'Please enter a valid position'
+      p "#{player.name} please enter a valid position"
       print '>'
       input = gets.chomp.downcase
     end
 
-    @board.board[input].sub!('.', sym)
+    @board.board[input].sub!('.', player.token)
   end
 
   def computer_turn

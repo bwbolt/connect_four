@@ -44,7 +44,7 @@ class Game
 
       recycle_winners
 
-      if winner?('X')
+      if winner?(@player1)
         p 'Player One is the Winner!!!'
 
         print_main_menu
@@ -74,8 +74,6 @@ class Game
   end
 
   def start_two_player
-    # require 'pry'
-    # binding.pry
     p "Please enter player1's name"
     print '>'
     @player1.change_name(gets.chomp)
@@ -88,7 +86,7 @@ class Game
     until @board.draw
       turn = Turn.new(@board)
       recycle_winners
-      turn.human_turn('X')
+      turn.human_turn(@player1)
 
       @board.print_board
 
@@ -101,25 +99,7 @@ class Game
         exit
       end
 
-      # print 'Computer calculating'
-      # sleep(1)
-      # print '.' # This bit here makes it look like the computer is thinking.
-      # sleep(1)
-      # puts '.'
-
-      #   turn.computer_turn
-      #
-      #   @board.print_board
-      #   recycle_winners
-      #
-      #   next unless winner?('O')
-      #
-      #   p 'The almighty computer has won...'
-      #   # break
-      #   print_main_menu
-      #   exit
-      # end
-      turn.human_turn('O')
+      turn.human_turn(@player2)
 
       @board.print_board
 
