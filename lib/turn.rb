@@ -13,12 +13,7 @@ class Turn
   def human_turn(player)
     p "#{player.name} please enter position to place an #{player.token}"
     print '>'
-    input = gets.chomp.downcase
-    until   %w[a b c d e f g].include?(input) && @board.board[input][-1] == '.'
-      p "#{player.name} please enter a valid position"
-      print '>'
-      input = gets.chomp.downcase
-    end
+    input = human_input_validator
     @board.board[input].sub!('.', player.token)
   end
 
@@ -26,7 +21,6 @@ class Turn
     options = %w[a b c d e f g]
     random = options.shuffle
     random = options.shuffle until @board.board[random[0]][-1] == '.'
-
     @board.board[random[0]].sub!('.', 'O')
   end
 
@@ -51,5 +45,15 @@ class Turn
       @game.print_main_menu
       exit
     end
+  end
+
+  def human_input_validator
+    input = gets.chomp.downcase
+    until   %w[a b c d e f g].include?(input) && @board.board[input][-1] == '.'
+      p "#{player.name} please enter a valid position"
+      print '>'
+      input = gets.chomp.downcase
+    end
+    input
   end
 end
