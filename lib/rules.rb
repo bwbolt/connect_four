@@ -1,5 +1,5 @@
 class Rules
-  attr_reader :winners
+  attr_reader :winners, :board
 
   def initialize(board)
     @board = board
