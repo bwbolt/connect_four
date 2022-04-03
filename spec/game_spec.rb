@@ -13,7 +13,7 @@ describe Game do
     expect(game.player1).to be_a(Player)
     expect(game.player2).to be_a(Player)
   end
-  it 'initializes with a board' do
+  it 'initializes with a board and rules' do
     game = Game.new
     expect(game.board).to be_a(Board)
     expect(game.board.board).to eq({ 'a' => '.,.,.,.,.,.',
@@ -23,6 +23,8 @@ describe Game do
                                      'e' => '.,.,.,.,.,.',
                                      'f' => '.,.,.,.,.,.',
                                      'g' => '.,.,.,.,.,.' })
+
+    expect(game.rules).to be_a(Rules)
   end
   it 'starts' do
     game = Game.new
