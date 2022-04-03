@@ -1,6 +1,7 @@
 require './lib/player'
 require './lib/board'
 require './lib/turn'
+require './lib/menu'
 
 class Game
   attr_reader :player1, :player2, :board
@@ -146,24 +147,9 @@ class Game
   end
 
   def print_main_menu
-    p 'Enter p to play. Enter t to play two player. Enter q to quit.'
-    print '>'
-    user_input = gets.chomp.downcase
-
-    until %w[p t q].include?(user_input)
-      p 'Please enter valid response. p or t or q.'
-      print '>'
-      user_input = gets.chomp.downcase
-    end
-
-    if user_input == 'p'
-      game = Game.new
-      game.start
-    elsif user_input == 't'
-      game = Game.new
-      game.start_two_player
-    elsif user_input == 'q'
-      p 'Hope to see you again soon! Goodbye!'
-    end
+    menu = Menu.new
+    user_input = menu.prompt
+    menu.check_input_validity(user_input)
+    menu.input_coordinator(user_input)
   end
 end
