@@ -40,7 +40,7 @@ class Game
   def print_main_menu
     menu = Menu.new
     user_input = menu.prompt
-    menu.check_input_validity(user_input)
-    menu.input_coordinator(user_input)
+    valid_input = menu.check_input_validity(user_input)
+    menu.input_coordinator(valid_input)
   end
 end
