@@ -13,7 +13,7 @@ class Turn
   def human_turn(player)
     p "#{player.name} please enter position to place an #{player.token}"
     print '>'
-    input = human_input_validator
+    input = human_input_validator(player)
     @board.board[input].sub!('.', player.token)
   end
 
@@ -47,7 +47,7 @@ class Turn
     end
   end
 
-  def human_input_validator
+  def human_input_validator(player)
     input = gets.chomp.downcase
     until   %w[a b c d e f g].include?(input) && @board.board[input][-1] == '.'
       p "#{player.name} please enter a valid position"
