@@ -23,4 +23,9 @@ describe Board do
     board = Board.new
     expect(board).to respond_to(:print_board)
   end
+
+    it 'can tell if a draw has occurred' do
+    board = Board.new
+    expect(board.draw).to eq(false)
+  end
 end
