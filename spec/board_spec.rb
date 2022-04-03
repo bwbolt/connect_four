@@ -21,8 +21,6 @@ describe Board do
   end
   it 'can print board' do
     board = Board.new
-    require 'pry'
-    binding.pry
     expect(board).to respond_to(:print_board)
   end
 end
