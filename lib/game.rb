@@ -5,7 +5,7 @@ require './lib/menu'
 require './lib/rules'
 
 class Game
-  attr_reader :player1, :player2, :board
+  attr_reader :player1, :player2, :board, :rules
 
   def initialize
     @player1 = Player.new('Player One', 'X')
