@@ -28,37 +28,11 @@ class Game
   def start_two_player
     @player1.enter_names(@player1, @player2)
     @board.print_board
-
     until @board.draw
-      turn = Turn.new(@board)
-      @rules.recycle_winners
-      turn.human_turn(@player1)
-
-      @board.print_board
-
-      @rules.recycle_winners
-
-      if @rules.winner?('X')
-        p "#{@player1.name} is the Winner!!!"
-
-        print_main_menu
-        exit
-      end
-
-      turn.human_turn(@player2)
-
-      @board.print_board
-
-      @rules.recycle_winners
-
-      next unless @rules.winner?('O')
-
-      p "#{@player2.name} is the Winner!!!"
-
-      print_main_menu
-      exit
+      turn = Turn.new(@board, @rules, @player1, @player2)
+      turn.human_move(@player1)
+      turn.human_move(@player2)
     end
-
     p "It's a DRAW!!" if @board.draw
     print_main_menu
   end

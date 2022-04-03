@@ -35,7 +35,7 @@ class Turn
     human_turn(player)
     @board.print_board
     @rules.recycle_winners
-    if @rules.winner?('X')
+    if @rules.winner?(player.token)
       p "#{player.name} is the Winner!!!"
       @game.print_main_menu
       exit
