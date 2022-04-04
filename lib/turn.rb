@@ -1,6 +1,6 @@
 require './lib/game'
 class Turn
-  attr_reader :board
+  attr_reader :board, :rules, :player1, :player2, :game
 
   def initialize(board, rules, player1, player2)
     @board = board
