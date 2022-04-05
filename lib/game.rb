@@ -15,6 +15,9 @@ class Game
   end
 
   def start
+    p 'Please enter your name'
+    print '>'
+    @player1.change_name(gets.chomp.capitalize)
     @board.print_board
     until @board.draw
       turn = Turn.new(@board, @rules, @player1, @player2)

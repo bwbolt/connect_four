@@ -34,11 +34,14 @@ class Database
   end
 
   def print_leaderboard
+    puts 'LEADERBOARD'
+    puts '----------------------------------'
     sorted_players = @ref.child.read.sort_by { |_player, stats| stats['win_percentage'] }.reverse
     rank = 1
     player_names = sorted_players.each do |player, stats|
       puts "#{rank}:#{player} has a win percentage of #{(stats['win_percentage'] * 100).round(2)}%"
       rank += 1
     end
+    puts '----------------------------------'
   end
 end
