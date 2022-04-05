@@ -12,11 +12,13 @@ describe Database do
     expect(database.get_all_users).to be_a Hash
     expect(database).to respond_to(:add_user)
   end
+
   it 'can ass game played to user and games won' do
     database = Database.new
     expect(database).to respond_to(:add_game_played)
     expect(database).to respond_to(:add_game_won)
   end
+
   it 'can print the leaderboard' do
     database = Database.new
     expect(database).to respond_to(:print_leaderboard)
