@@ -6,6 +6,7 @@ describe Board do
     board = Board.new
     expect(board).to be_a Board
   end
+
   it 'has columns and rows' do
     board = Board.new
     expect(board.board).to eq({
@@ -19,12 +20,13 @@ describe Board do
 
                               })
   end
+
   it 'can print board' do
     board = Board.new
     expect(board).to respond_to(:print_board)
   end
 
-    it 'can tell if a draw has occurred' do
+  it 'can tell if a draw has occurred' do
     board = Board.new
     expect(board.draw).to eq(false)
   end
