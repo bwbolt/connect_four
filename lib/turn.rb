@@ -32,7 +32,7 @@ class Turn
     @board.print_board
     @rules.recycle_winners
     if @rules.winner?(player.token)
-      @database.add_game_won(player.name)
+      @database.add_game_won(player.name) unless player.name == 'Player One'
       p "#{player.name} is the Winner!!!"
       @game.print_main_menu
       exit
