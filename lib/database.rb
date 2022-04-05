@@ -29,7 +29,7 @@ class Database
     user_info = @ref.child(name).read
     games_played = user_info['games_played']
     games_won = user_info['games_won']
-    @ref.child(name).update("games_won": games_won += 2)
+    @ref.child(name).update("games_won": games_won += 1)
     @ref.child(name).update("win_percentage": games_won.to_f / games_played)
   end
 
