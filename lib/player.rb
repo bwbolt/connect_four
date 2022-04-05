@@ -10,9 +10,9 @@ class Player
   end
 
   def change_name(name)
-    @name = name
-    @database.add_user(name)
-    @database.add_game_played(name)
+    @name = name.capitalize
+    @database.add_user(name.capitalize)
+    @database.add_game_played(name.capitalize)
   end
 
   def enter_names(player1, player2)
