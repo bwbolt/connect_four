@@ -1,4 +1,5 @@
 require './lib/game'
+require './lib/database'
 class Turn
   attr_reader :board, :rules, :player1, :player2, :game
 
@@ -8,6 +9,7 @@ class Turn
     @player1 = player1
     @player2 = player2
     @game = Game.new
+    @database = Database.new
   end
 
   def human_turn(player)
@@ -30,6 +32,7 @@ class Turn
     @board.print_board
     @rules.recycle_winners
     if @rules.winner?(player.token)
+      @database.add_game_won(player.name) unless player.name == 'Player One'
       p "#{player.name} is the Winner!!!"
       @game.print_main_menu
       exit

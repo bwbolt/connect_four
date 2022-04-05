@@ -1,15 +1,18 @@
 require './lib/board'
-
+require './lib/database'
 class Player
   attr_reader :name, :token
 
   def initialize(name, token)
     @name = name
     @token = token
+    @database = Database.new
   end
 
   def change_name(name)
-    @name = name
+    @name = name.capitalize
+    @database.add_user(name.capitalize)
+    @database.add_game_played(name.capitalize)
   end
 
   def enter_names(player1, player2)
